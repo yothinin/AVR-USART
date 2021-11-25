@@ -21,7 +21,7 @@ void UART_init(uint16_t ubrr){
 }
 
 void UART_putc(unsigned char data){
-  while (!(UCSR0A & (1>>UDRE0)));
+  while (!(UCSR0A & (1<<UDRE0)));
   UDR0 = data;
 }
 
@@ -34,14 +34,16 @@ int main(){
   int i;
   unsigned char data[] = "CFromZero, data from ATmega328p\r\n";
   while (1){
-    i = 0;
+    UART_puts(data);
+    /*i = 0;
     while(data[i] != 0){
       while (!(UCSR0A & (1<<UDRE0)));
       UDR0 = data[i];
       ++i;
     }
+    */
     //while(!(UCSR0A & (1<<UDRE0)));
     //UDR0 = 'A';
-    _delay_ms(1000);
+    //_delay_ms(1000);
   }
 }
