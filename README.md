@@ -9,7 +9,8 @@ avrdude -patmega328p -cusbasp -Pusb -Uflash:w:main.hex
 
 Note:
 
-/* 
+/*
+
  * Set frame format: 1000 0110 (URSEL UMSEL UPM1 UPM0 USBS UCSZ1 UCSZ0 UCPOL)
  * Asynchronous mode (UMSEL = 0), Parity: None (UPM1 = 0, UPM0 = 0), Stop bit(s): 1 (USBS = 0)
  * Character Size: 8-bit
