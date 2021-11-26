@@ -21,6 +21,8 @@ Note:
 
 */
 
+// 8,N,1 
+
 UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //atmega8l
 
 UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //atmega16
@@ -34,6 +36,8 @@ UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //atmega16
  * Character Size: 8-bit (UCSZn1 = 1, UCSZn0 = 1), Rising XCKn edge (UCPOLn = 0)
 
 */
+
+// 8,N,2
 
 UCSR0C = (1<<USBS0) | (1<<UCSZ01) | (1<<UCSZ00);  //atmega328p
 
