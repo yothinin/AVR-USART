@@ -14,6 +14,7 @@ Note:
  * Asynchronous mode (UMSEL = 0), Parity: None (UPM1 = 0, UPM0 = 0), Stop bit(s): 1 (USBS = 0)
  * Character Size: 8-bit
 */
+
 UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //atmega8l
 UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //atmega16
 
