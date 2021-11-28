@@ -32,7 +32,7 @@ int main(void){
     printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
   }
   
-  char read_buf[10];
+  char read_buf[256];
   int stop = 0;
   
   while (stop == 0){
