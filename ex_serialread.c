@@ -32,8 +32,8 @@ int main(void){
     printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
   }
   
-  char read_buf[256];
-  int i = 0, stop = 0;
+  char read_buf[10];
+  int stop = 0;
   
   while (stop == 0){
     int n = read(serial_port, &read_buf, sizeof(read_buf));
@@ -44,8 +44,6 @@ int main(void){
     else
       if (n != 0)
           printf("%s", read_buf);
-    
-    ++i;
   }
   printf("Quit by user!!!\nWait to close serial port.\n");
   close(serial_port);
