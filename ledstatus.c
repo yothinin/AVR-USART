@@ -32,7 +32,7 @@ void UART_SendString(char *str){
 }
 
 int main(void){
-  int i = 0, direct = 0;
+  uint8_t i = 0, direct = 0;
   DDRB = 0xFF;
   PORTB = 0xFF;
   uint8_t j=0;
