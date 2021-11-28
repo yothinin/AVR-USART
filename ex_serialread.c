@@ -6,7 +6,6 @@
 #include <unistd.h>
 
 int main(void){
-
   int serial_port = open("/dev/ttyUSB0", O_RDWR);
   if (serial_port < 0){
     printf("Error %i from open: %s\n", errno, strerror(errno));
@@ -24,9 +23,9 @@ int main(void){
   tty.c_cflag |= CS8;
   tty.c_cflag &= ~CRTSCTS;
   
-  cfsetispeed(&tty, B1200);
-  cfsetospeed(&tty, B1200);
-  //cfsetspeed(&tty, B1200);
+  //cfsetispeed(&tty, B1200);
+  //cfsetospeed(&tty, B1200);
+  cfsetspeed(&tty, B1200);
   
   // Save tty settings, also checking for error
   if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
