@@ -38,26 +38,30 @@ int main(void){
   uint8_t j=0;
   UART_init(MYUBRR);
   while (1){
-    PORTB ^= 1<<i;
-    for (j = 0; j <= 7; ++j)
-      (PINB & (1<<j)) ? UART_TxChar('1') : UART_TxChar('0');
-    UART_SendString("\r\n");
-    _delay_ms(50);
-    PORTB |= 1<<i;
-    _delay_ms(50);
-    if (direct == 0){
-      ++i;
-      if (i > 7){
-        i=7;
-        direct = 1;
-      }
+    if(PIND & (1<<PIN7)){     // Add button to send stop command.
+      UART_SendString("!q!"); // sent string "!q!" to UART.
     }else{
-     --i;
-     if (i < 0){
-       i = 0;
-       direct = 0;
-     }
-   }
+      PORTB ^= 1<<i;
+      for (j = 0; j <= 7; ++j)
+        (PINB & (1<<j)) ? UART_TxChar('1') : UART_TxChar('0');
+      UART_SendString("\n");
+      _delay_ms(50);
+      PORTB |= 1<<i;
+      _delay_ms(50);
+      if (direct == 0){
+        ++i;
+        if (i > 7){
+          i=7;
+          direct = 1;
+        }
+      }else{
+       --i;
+       if (i < 0){
+         i = 0;
+         direct = 0;
+       }
+      }
+    }
   }
   return 0;
 }
