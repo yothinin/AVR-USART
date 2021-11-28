@@ -33,13 +33,14 @@ void UART_SendString(char *str){
 
 int main(void){
   uint8_t i = 0, direct = 0;
+  uint8_t j = 0, stop = 0;
   DDRB = 0xFF;
   PORTB = 0xFF;
-  uint8_t j=0;
   UART_init(MYUBRR);
-  while (1){
-    if(PIND & (1<<PIN7)){     // Add button to send stop command.
-      UART_SendString("!q!"); // sent string "!q!" to UART.
+  while (stop == 0){
+    if(PIND & (1<<PIN7)){
+      UART_SendString("!q!\n");
+      stop = (stop) ? 0 : 1;
     }else{
       PORTB ^= 1<<i;
       for (j = 0; j <= 7; ++j)
@@ -55,11 +56,11 @@ int main(void){
           direct = 1;
         }
       }else{
-       --i;
-       if (i < 0){
-         i = 0;
-         direct = 0;
-       }
+        --i;
+        if (i < 0){
+          i = 0;
+          direct = 0;
+        }
       }
     }
   }
