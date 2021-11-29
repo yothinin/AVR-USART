@@ -32,8 +32,8 @@ void UART_SendString(char *str){
 }
 
 int main(void){
-  int8_t i = 0;
-  uint8_t j = 0, stop = 0, direct = 0;
+  int8_t i = 0, j = 0;
+  uint8_t stop = 0, direct = 0;
   DDRB = 0xFF;
   PORTB = 0xFF;
   UART_init(MYUBRR);
@@ -43,7 +43,7 @@ int main(void){
       stop = (stop) ? 0 : 1;
     }else{
       PORTB ^= 1<<i;
-      for (j = 0; j <= 7; ++j)
+      for (j = 7; j >= 0; --j)
         (PINB & (1<<j)) ? UART_TxChar('1') : UART_TxChar('0');
       UART_SendString("\n");
       _delay_ms(50);
@@ -52,12 +52,12 @@ int main(void){
       if (direct == 0){
         ++i;
         if (i > 7){
-          i=7;
+          i=6;
           direct = 1;
         }
       }else{
         if (i < 0){
-          i = 0;
+          i = 1;
           direct = 0;
         }
       }
